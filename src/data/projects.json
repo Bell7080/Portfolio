@@ -1,0 +1,13 @@
+[
+  {
+    "id": "proj-001",
+    "title": "포트폴리오 사이트",
+    "description": "AI Art Director 개인 브랜딩 포트폴리오",
+    "intent": "채용·협업·의뢰 유입을 위한 개인 브랜딩 사이트가 필요했음",
+    "result": "Vite + React + TypeScript 기반 포트폴리오 구축",
+    "imageSrc": "",
+    "githubUrl": "https://github.com/bell7080/portfolio",
+    "demoUrl": "",
+    "tags": ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"]
+  }
+]

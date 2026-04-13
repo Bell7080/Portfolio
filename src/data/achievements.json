@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ach-001",
+    "category": "education",
+    "title": "한국콘텐츠진흥원 뉴콘텐츠아카데미 2기 우수 수료",
+    "description": "AI 콘텐츠 창작 분야 우수 수료",
+    "date": "2024",
+    "link": "",
+    "icon": "🏆"
+  },
+  {
+    "id": "ach-002",
+    "category": "academic",
+    "title": "게임콘텐츠과 재학",
+    "description": "게임 기획 및 콘텐츠 제작 전공",
+    "date": "현재",
+    "link": "",
+    "icon": "🎓"
+  }
+]

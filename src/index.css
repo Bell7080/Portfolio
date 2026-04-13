@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────────────── */
+:root {
+  /* 기본 팔레트 */
+  --color-bg: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-sub: #aaaaaa;
+
+  /* 기본 액센트 (세계관 미진입 상태) */
+  --accent: #ffffff;
+  --accent-sub: #aaaaaa;
+}
+
+/* 세계관별 테마 ─────────────────────────────────────────────── */
+[data-world="심해"] {
+  --accent: #005f73;
+  --accent-sub: #0a9396;
+}
+
+[data-world="마법학원"] {
+  --accent: #7b2d8b;
+  --accent-sub: #f4c430;
+}
+
+[data-world="판타지모험"] {
+  --accent: #3a7d44;
+  --accent-sub: #f9c74f;
+}
+
+/* ─── Base Styles ────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: #0d0d0d;
+  }
+
+  /* 스크롤바 */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 2px;
+  }
+}
+
+/* ─── Utility Classes ────────────────────────────────────────── */
+@layer utilities {
+  .text-accent {
+    color: var(--accent);
+  }
+  .text-accent-sub {
+    color: var(--accent-sub);
+  }
+  .border-accent {
+    border-color: var(--accent);
+  }
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  .bg-accent-sub {
+    background-color: var(--accent-sub);
+  }
+}
