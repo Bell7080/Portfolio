@@ -1,0 +1,12 @@
+[
+  {
+    "id": "char-001",
+    "worldId": "심해",
+    "name": "캐릭터명 (준비 중)",
+    "description": "심해 세계관의 첫 번째 캐릭터 — 이미지 업로드 후 업데이트 예정",
+    "imageSrc": "",
+    "videoSrc": "",
+    "tools": ["Midjourney", "CapCut"],
+    "note": "일본풍 수채화 터치로 신비로운 분위기를 표현"
+  }
+]
