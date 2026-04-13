@@ -1,104 +1,122 @@
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
+import SectionLabel from '@/components/ui/SectionLabel'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form,   setForm]   = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setStatus('sending')
-    // EmailJS 연동은 Service ID / Template ID 설정 후 활성화
-    // await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
-    setTimeout(() => setStatus('sent'), 1000) // 임시 처리
+    // TODO: emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
+    setTimeout(() => setStatus('sent'), 1000)
   }
 
+  const SOCIALS = [
+    { label: 'GitHub',    href: 'https://github.com/bell7080' },
+  ]
+
   return (
-    <section className="max-w-2xl mx-auto px-6 py-24">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="font-serif text-4xl md:text-5xl mb-4"
-      >
-        Contact
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-        className="text-text-sub mb-12"
-      >
-        협업·의뢰·채용 문의 환영합니다
-      </motion.p>
+    <section className="max-w-4xl mx-auto px-8 md:px-16 py-24">
+      <SectionLabel number="07" label="Contact" />
 
-      <motion.form
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        onSubmit={handleSubmit}
-        className="space-y-6"
-      >
-        <div>
-          <label className="block text-xs tracking-wider text-text-sub mb-2">이름</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-text focus:border-accent focus:outline-none transition-colors"
-          />
-        </div>
-        <div>
-          <label className="block text-xs tracking-wider text-text-sub mb-2">이메일</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-text focus:border-accent focus:outline-none transition-colors"
-          />
-        </div>
-        <div>
-          <label className="block text-xs tracking-wider text-text-sub mb-2">메시지</label>
-          <textarea
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            required
-            rows={6}
-            className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-text focus:border-accent focus:outline-none transition-colors resize-none"
-          />
-        </div>
+      <div className="grid md:grid-cols-2 gap-16 items-start">
 
-        <button
-          type="submit"
-          disabled={status === 'sending' || status === 'sent'}
-          className="w-full py-3 border border-accent text-accent text-sm tracking-wider hover:bg-accent hover:text-bg transition-colors disabled:opacity-50"
+        {/* 왼쪽: CTA 텍스트 */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          {status === 'sending' ? '전송 중...' : status === 'sent' ? '전송 완료!' : '전송하기'}
-        </button>
+          <h2 className="font-serif text-3xl md:text-4xl leading-snug mb-6">
+            협업·의뢰·채용<br />
+            <span className="text-accent">문의 환영합니다.</span>
+          </h2>
+          <p className="text-sub leading-relaxed mb-10">
+            AI 아트 디렉팅, 세계관 설계, 콘텐츠 기획, 바이브 코딩 프로젝트 등
+            어떤 형태의 협업이든 편하게 연락주세요.
+          </p>
 
-        {status === 'error' && (
-          <p className="text-red-400 text-xs text-center">전송에 실패했습니다. 직접 이메일을 보내주세요.</p>
-        )}
-      </motion.form>
+          <div className="space-y-3">
+            {SOCIALS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between py-3 border-b border-[var(--color-border)] group"
+              >
+                <span className="font-mono text-[11px] tracking-widest text-sub group-hover:text-accent transition-colors">
+                  {label}
+                </span>
+                <span className="font-mono text-xs text-dim group-hover:text-accent transition-colors">→</span>
+              </a>
+            ))}
+          </div>
+        </motion.div>
 
-      {/* 소셜 링크 */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-6 text-sm text-text-sub"
-      >
-        <a href="https://github.com/bell7080" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-          GitHub →
-        </a>
-      </motion.div>
+        {/* 오른쪽: 폼 */}
+        <motion.form
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          onSubmit={handleSubmit}
+          className="space-y-5"
+        >
+          {(['name', 'email'] as const).map(field => (
+            <div key={field}>
+              <label className="font-mono text-[10px] tracking-[0.3em] text-dim uppercase block mb-2">
+                {field === 'name' ? 'NAME' : 'EMAIL'}
+              </label>
+              <input
+                name={field}
+                type={field === 'email' ? 'email' : 'text'}
+                value={form[field]}
+                onChange={handleChange}
+                required
+                className="w-full bg-transparent border border-[var(--color-border)] px-4 py-3 font-mono text-sm text-[#f0f0f0] focus:border-accent focus:outline-none focus:ring-0 transition-colors placeholder:text-dim"
+                placeholder={field === 'name' ? '이름' : 'email@example.com'}
+              />
+            </div>
+          ))}
+          <div>
+            <label className="font-mono text-[10px] tracking-[0.3em] text-dim uppercase block mb-2">
+              MESSAGE
+            </label>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              required
+              rows={6}
+              className="w-full bg-transparent border border-[var(--color-border)] px-4 py-3 font-mono text-sm text-[#f0f0f0] focus:border-accent focus:outline-none focus:ring-0 transition-colors resize-none placeholder:text-dim"
+              placeholder="프로젝트 내용, 협업 형태 등을 간략히 작성해주세요"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={status === 'sending' || status === 'sent'}
+            className="w-full py-3.5 border border-accent font-mono text-xs tracking-[0.3em] text-accent hover:bg-accent hover:text-[#0d0d0d] transition-colors disabled:opacity-40 group relative overflow-hidden"
+          >
+            <span className="relative z-10">
+              {status === 'sending' ? 'SENDING...' : status === 'sent' ? 'SENT ✓' : 'SEND MESSAGE →'}
+            </span>
+          </button>
+
+          {status === 'error' && (
+            <p className="font-mono text-[10px] text-red-400 text-center tracking-widest">
+              전송 실패. 직접 이메일을 보내주세요.
+            </p>
+          )}
+        </motion.form>
+
+      </div>
     </section>
   )
 }

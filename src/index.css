@@ -4,46 +4,55 @@
 
 /* ─── CSS Variables ─────────────────────────────────────────── */
 :root {
-  /* 기본 팔레트 */
   --color-bg: #0d0d0d;
-  --color-surface: #1a1a1a;
-  --color-text: #ffffff;
-  --color-text-sub: #aaaaaa;
+  --color-surface: #141414;
+  --color-surface-2: #1c1c1c;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-text: #f0f0f0;
+  --color-text-sub: #888888;
+  --color-text-dim: #444444;
 
-  /* 기본 액센트 (세계관 미진입 상태) */
-  --accent: #ffffff;
-  --accent-sub: #aaaaaa;
+  /* 기본 액센트 */
+  --accent: #e8e8e8;
+  --accent-sub: #888888;
+  --accent-glow: rgba(232, 232, 232, 0.12);
 }
 
-/* 세계관별 테마 ─────────────────────────────────────────────── */
+/* ─── 세계관 테마 ────────────────────────────────────────────── */
 [data-world="심해"] {
-  --accent: #005f73;
-  --accent-sub: #0a9396;
+  --accent: #0a9396;
+  --accent-sub: #005f73;
+  --accent-glow: rgba(10, 147, 150, 0.15);
 }
-
 [data-world="마법학원"] {
-  --accent: #7b2d8b;
-  --accent-sub: #f4c430;
+  --accent: #c77dff;
+  --accent-sub: #7b2d8b;
+  --accent-glow: rgba(199, 125, 255, 0.15);
 }
-
 [data-world="판타지모험"] {
-  --accent: #3a7d44;
-  --accent-sub: #f9c74f;
+  --accent: #70e000;
+  --accent-sub: #3a7d44;
+  --accent-glow: rgba(112, 224, 0, 0.12);
 }
 
-/* ─── Base Styles ────────────────────────────────────────────── */
+/* ─── Base ───────────────────────────────────────────────────── */
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  *, *::before, *::after {
+    cursor: none;
   }
 
-  body {
-    @apply bg-bg text-text font-sans;
+  html {
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  body {
+    @apply bg-[#0d0d0d] text-[#f0f0f0] font-sans;
+    background-color: var(--color-bg);
+  }
+
+  h1, h2, h3 {
     @apply font-serif;
   }
 
@@ -52,34 +61,129 @@
     color: #0d0d0d;
   }
 
-  /* 스크롤바 */
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-bg);
-  }
+  ::-webkit-scrollbar { width: 2px; }
+  ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
     background: var(--accent);
-    border-radius: 2px;
+    border-radius: 1px;
   }
 }
 
-/* ─── Utility Classes ────────────────────────────────────────── */
+/* ─── Utilities ──────────────────────────────────────────────── */
 @layer utilities {
-  .text-accent {
-    color: var(--accent);
+  /* 액센트 */
+  .text-accent      { color: var(--accent); }
+  .text-accent-sub  { color: var(--accent-sub); }
+  .text-sub         { color: var(--color-text-sub); }
+  .text-dim         { color: var(--color-text-dim); }
+  .border-accent    { border-color: var(--accent); }
+  .bg-accent        { background-color: var(--accent); }
+  .bg-surface       { background-color: var(--color-surface); }
+  .bg-surface-2     { background-color: var(--color-surface-2); }
+  .border-theme     { border-color: var(--color-border); }
+
+  /* 글로우 */
+  .glow {
+    box-shadow: 0 0 24px var(--accent-glow), 0 0 48px var(--accent-glow);
   }
-  .text-accent-sub {
-    color: var(--accent-sub);
+  .glow-text {
+    text-shadow: 0 0 20px var(--accent-glow);
   }
-  .border-accent {
+  .glow-border {
     border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
   }
-  .bg-accent {
-    background-color: var(--accent);
+
+  /* 배경 그리드 */
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--color-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
-  .bg-accent-sub {
-    background-color: var(--accent-sub);
+
+  /* 모노스페이스 */
+  .font-mono { font-family: 'Space Mono', monospace; }
+
+  /* 스캔라인 */
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.04) 3px,
+      rgba(0, 0, 0, 0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
   }
+
+  /* 마퀴 */
+  .marquee-track {
+    animation: marquee 28s linear infinite;
+    white-space: nowrap;
+    display: inline-flex;
+    gap: 0;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+}
+
+/* ─── Keyframes ──────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes cursor-ring-enter {
+  from { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
+  to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────────── */
+#cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: background 0.3s;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    border-color 0.3s,
+    opacity 0.2s ease;
+  animation: cursor-ring-enter 0.4s ease forwards;
+}
+
+#cursor-ring.hovering {
+  width: 48px;
+  height: 48px;
+  opacity: 0.6;
 }
