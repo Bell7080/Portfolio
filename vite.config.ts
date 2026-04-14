@@ -4,8 +4,11 @@ import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages 프로젝트 페이지: bell7080.github.io/Portfolio/
   base: '/Portfolio/',
+  build: {
+    outDir: 'docs',   // dist/ 대신 docs/ 에 빌드 — GitHub Pages "main /docs" 설정과 맞춤
+    emptyOutDir: true,
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
