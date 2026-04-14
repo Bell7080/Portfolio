@@ -2,26 +2,28 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main   # main 브랜치에 푸시 시 자동 배포
+    branches: [main]
 
+# GitHub Pages 배포에 필요한 권한
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# 동시 배포 방지 (이전 배포가 진행 중이면 취소하지 않고 대기)
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
+  # ── 1. 빌드 ─────────────────────────────────────────────────
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -32,12 +34,14 @@ jobs:
 
       - name: Build
         run: npm run build
+        # VITE_BASE 등 환경 변수 필요 시 여기에 env: 추가
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist   # vite.config.ts outDir 와 일치
 
+  # ── 2. 배포 ─────────────────────────────────────────────────
   deploy:
     needs: build
     runs-on: ubuntu-latest

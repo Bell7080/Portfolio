@@ -1,14 +1,12 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { WORLDS } from '@/constants'
 import SectionLabel from '@/components/ui/SectionLabel'
 
 const WORK_TABS = [
-  { label: '캐릭터',  href: `/works/characters/${WORLDS[0].id}`, match: '/works/characters' },
-  { label: '배경·환경', href: '/works/backgrounds', match: '/works/backgrounds' },
-  { label: '에셋',    href: '/works/assets', match: '/works/assets' },
-  { label: '3D',      href: '/works/3d', match: '/works/3d' },
-  { label: '기타',    href: '/works/etc', match: '/works/etc' },
+  { label: '캐릭터',    basePath: '/works/characters', href: '/works/characters/심해' },
+  { label: '배경·환경', basePath: '/works/backgrounds', href: '/works/backgrounds' },
+  { label: '에셋',      basePath: '/works/assets',      href: '/works/assets' },
+  { label: '3D',        basePath: '/works/3d',           href: '/works/3d' },
+  { label: '기타',      basePath: '/works/etc',          href: '/works/etc' },
 ]
 
 export default function Works() {
@@ -19,33 +17,33 @@ export default function Works() {
       <SectionLabel number="04" label="Works" />
 
       {/* 탭 바 */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex gap-0 mb-12 border-b border-[var(--color-border)] overflow-x-auto"
-      >
-        {WORK_TABS.map(({ label, href, match }) => {
-          const isActive = pathname.startsWith(match)
+      <div className="flex mb-12 border-b border-[var(--color-border)] overflow-x-auto">
+        {WORK_TABS.map(({ label, basePath, href }) => {
+          // basePath로 시작하면 active — 세계관 전환(/works/characters/마법학원)도 캐릭터 탭 active 유지
+          const isActive = pathname.startsWith(basePath)
+
           return (
             <NavLink
               key={href}
               to={href}
-              className={`relative px-5 py-3 font-mono text-[11px] tracking-widest whitespace-nowrap transition-colors ${
-                isActive ? 'text-accent' : 'text-sub hover:text-[#f0f0f0]'
-              }`}
+              className="relative px-5 py-3 font-mono text-[11px] tracking-widest whitespace-nowrap transition-colors"
+              style={{ color: isActive ? 'var(--accent)' : 'var(--color-text-sub)' }}
             >
               {label}
-              {isActive && (
-                <motion.span
-                  layoutId="works-tab-indicator"
-                  className="absolute bottom-0 left-0 right-0 h-px bg-accent"
-                />
-              )}
+              {/* 탭 인디케이터 — CSS transition 사용 (layoutId 충돌 제거) */}
+              <span
+                className="absolute bottom-0 left-0 right-0 h-px transition-opacity duration-200"
+                style={{
+                  backgroundColor: 'var(--accent)',
+                  opacity: isActive ? 1 : 0,
+                }}
+              />
             </NavLink>
           )
         })}
-      </motion.div>
+      </div>
 
+      {/* 탭 콘텐츠 */}
       <Outlet />
     </section>
   )

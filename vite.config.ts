@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/Portfolio/',
   build: {
-    outDir: 'docs',   // dist/ 대신 docs/ 에 빌드 — GitHub Pages "main /docs" 설정과 맞춤
+    outDir: 'dist',
     emptyOutDir: true,
   },
   resolve: {
