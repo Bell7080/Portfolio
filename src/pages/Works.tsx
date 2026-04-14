@@ -1,4 +1,5 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import SectionLabel from '@/components/ui/SectionLabel'
 
 const WORK_TABS = [
@@ -43,8 +44,18 @@ export default function Works() {
         })}
       </div>
 
-      {/* 탭 콘텐츠 */}
-      <Outlet />
+      {/* 탭 콘텐츠
+          key = 2번째 경로 세그먼트 (characters / backgrounds / ...)
+          세계관 전환(characters/심해 → characters/마법학원)은 같은 key → fade 없음
+          상위 탭 전환(characters → backgrounds)은 key 변경 → fade 적용 */}
+      <motion.div
+        key={pathname.split('/')[2] ?? ''}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.15, ease: 'easeOut' }}
+      >
+        <Outlet />
+      </motion.div>
     </section>
   )
 }

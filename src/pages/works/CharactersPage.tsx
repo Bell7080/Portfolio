@@ -1,5 +1,5 @@
 import { useParams, NavLink } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { WORLDS } from '@/constants'
 import { useWorldTheme } from '@/hooks/useWorldTheme'
 import type { WorldId } from '@/types'
@@ -33,32 +33,40 @@ export default function CharactersPage() {
         ))}
       </div>
 
-      {/* 세계관 소개 */}
-      <motion.div
-        key={currentWorld.id}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-10 pb-8 border-b border-[var(--color-border)]"
-      >
-        <div className="flex items-baseline gap-4">
-          <h3 className="font-serif text-2xl text-accent">{currentWorld.name}</h3>
-          <span className="font-mono text-[10px] tracking-widest text-dim border border-[var(--color-border)] px-2 py-0.5">
-            {currentWorld.artStyle}
-          </span>
-        </div>
-        <p className="text-sub text-sm mt-2 max-w-lg">{currentWorld.description}</p>
-      </motion.div>
+      {/* 세계관 소개 + 캐릭터 그리드
+          AnimatePresence mode="sync": 이전 내용이 fade-out 하는 동안 새 내용이 fade-in
+          key 변경(세계관 전환) 시 부드럽게 교차 전환 */}
+      <AnimatePresence mode="sync" initial={false}>
+        <motion.div
+          key={currentWorld.id}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+        >
+          {/* 세계관 소개 */}
+          <div className="mb-10 pb-8 border-b border-[var(--color-border)]">
+            <div className="flex items-baseline gap-4">
+              <h3 className="font-serif text-2xl text-accent">{currentWorld.name}</h3>
+              <span className="font-mono text-[10px] tracking-widest text-dim border border-[var(--color-border)] px-2 py-0.5">
+                {currentWorld.artStyle}
+              </span>
+            </div>
+            <p className="text-sub text-sm mt-2 max-w-lg">{currentWorld.description}</p>
+          </div>
 
-      {/* 캐릭터 그리드 */}
-      {worldChars.length === 0 ? (
-        <EmptyState worldName={currentWorld.name} />
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {worldChars.map((char, i) => (
-            <CharacterCard key={char.id} char={char} index={i} />
-          ))}
-        </div>
-      )}
+          {/* 캐릭터 그리드 */}
+          {worldChars.length === 0 ? (
+            <EmptyState worldName={currentWorld.name} />
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {worldChars.map((char, i) => (
+                <CharacterCard key={char.id} char={char} index={i} />
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
