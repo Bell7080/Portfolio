@@ -20,7 +20,7 @@ export default function Works() {
       {/* 탭 바 */}
       <div className="flex mb-12 border-b border-[var(--color-border)] overflow-x-auto">
         {WORK_TABS.map(({ label, basePath, href }) => {
-          // basePath로 시작하면 active — 세계관 전환(/works/characters/마법학원)도 캐릭터 탭 active 유지
+          // basePath로 시작하면 active — 세계관 전환(/works/characters/AsmoTherapy)도 캐릭터 탭 active 유지
           const isActive = pathname.startsWith(basePath)
 
           return (
@@ -46,7 +46,7 @@ export default function Works() {
 
       {/* 탭 콘텐츠
           key = 2번째 경로 세그먼트 (characters / backgrounds / ...)
-          세계관 전환(characters/Neural-Rust → characters/마법학원)은 같은 key → fade 없음
+          세계관 전환(characters/Neural-Rust → characters/AsmoTherapy)은 같은 key → fade 없음
           상위 탭 전환(characters → backgrounds)은 key 변경 → fade 적용 */}
       <motion.div
         key={pathname.split('/')[2] ?? ''}
