@@ -6,7 +6,7 @@
     "description": "네이버 시리즈, 카카오페이지, 리디북스 등 다수 플랫폼 사이트 정식 연재",
     "date": "현재",
     "link": "https://series.naver.com/novel/detail.series?productNo=10711369",
-    "icon": "🎓"
+    "icon": "가"
   },
   {
     "id": "ach-001",
@@ -15,7 +15,7 @@
     "description": "AI 콘텐츠 창작 분야 우수 수료",
     "date": "2024",
     "link": "",
-    "icon": "🏆"
+    "icon": "나"
   },
   {
     "id": "ach-003",
@@ -24,6 +24,6 @@
     "description": "게임 기획 및 콘텐츠 제작 전공",
     "date": "현재",
     "link": "",
-    "icon": "🎓"
+    "icon": "다"
   }
 ]
