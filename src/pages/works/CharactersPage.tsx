@@ -57,7 +57,7 @@ export default function CharactersPage() {
             {/* 이름 + 아트스타일 뱃지 */}
             <div className="flex items-baseline gap-4 mb-4">
               <h3 className="font-serif text-2xl text-accent">{currentWorld.name}</h3>
-              <span className="font-mono text-[10px] tracking-widest text-dim border border-[var(--color-border)] px-2 py-0.5">
+              <span className="font-mono text-xs tracking-widest text-dim border border-[var(--color-border)] px-2 py-0.5">
                 {currentWData?.artStyle ?? currentWorld.artStyle}
               </span>
             </div>
@@ -68,7 +68,7 @@ export default function CharactersPage() {
                 {currentWData.tags.map(tag => (
                   <span
                     key={tag}
-                    className="font-mono text-[9px] tracking-widest px-2 py-0.5"
+                    className="font-mono text-xs tracking-widest px-2 py-0.5"
                     style={{
                       color: 'color-mix(in srgb, var(--accent) 80%, white)',
                       border: '1px solid color-mix(in srgb, var(--accent) 25%, transparent)',
@@ -83,9 +83,9 @@ export default function CharactersPage() {
             {/* 시놉시스 (펼쳐보기) */}
             {currentWData?.synopsis && (
               <div className="mb-4">
-                <p className="font-mono text-[9px] tracking-[0.3em] text-dim uppercase mb-2">Synopsis</p>
+                <p className="font-mono text-xs tracking-[0.3em] text-dim uppercase mb-2">Synopsis</p>
                 <div className="relative overflow-hidden" style={{ maxHeight: synopsisExpanded ? 'none' : '4.5rem' }}>
-                  <p className="text-sub text-sm leading-relaxed whitespace-pre-line">{currentWData.synopsis}</p>
+                  <p className="text-sub text-base leading-relaxed whitespace-pre-line">{currentWData.synopsis}</p>
                   {!synopsisExpanded && (
                     <div
                       className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
@@ -95,7 +95,7 @@ export default function CharactersPage() {
                 </div>
                 <button
                   onClick={() => setSynopsisExpanded(v => !v)}
-                  className="font-mono text-[9px] tracking-[0.25em] mt-2 transition-colors"
+                  className="font-mono text-xs tracking-[0.25em] mt-2 transition-colors"
                   style={{ color: 'color-mix(in srgb, var(--accent) 60%, white)' }}
                 >
                   {synopsisExpanded ? '▲ 접기' : '▼ 더보기'}
@@ -109,15 +109,15 @@ export default function CharactersPage() {
                 className="mt-3 pl-4 border-l-2"
                 style={{ borderColor: 'color-mix(in srgb, var(--accent) 25%, transparent)' }}
               >
-                <p className="font-mono text-[9px] tracking-widest text-dim uppercase mb-1">Concept Note</p>
-                <p className="text-sub text-xs leading-relaxed">{currentWData.conceptNote}</p>
+                <p className="font-mono text-xs tracking-widest text-dim uppercase mb-1">Concept Note</p>
+                <p className="text-sub text-sm leading-relaxed">{currentWData.conceptNote}</p>
               </div>
             )}
           </div>
 
           {/* ── 캐릭터 그리드 ──────────────────────────── */}
           <div className="mb-14">
-            <p className="font-mono text-[9px] tracking-[0.3em] text-dim uppercase mb-6">
+            <p className="font-mono text-xs tracking-[0.3em] text-dim uppercase mb-6">
               Characters
               <span className="ml-3 text-dim/40">{worldChars.length > 0 ? `${worldChars.length}` : '—'}</span>
             </p>
@@ -141,8 +141,8 @@ export default function CharactersPage() {
           {/* ── 세계관 갤러리 (캐릭터 외 이미지) ───────── */}
           {currentWData?.extraImages && currentWData.extraImages.length > 0 && (
             <div className="border-t border-[var(--color-border)] pt-10">
-              <p className="font-mono text-[9px] tracking-[0.3em] text-dim uppercase mb-2">세계관 갤러리</p>
-              <p className="text-sub text-xs mb-6">캐릭터로 만들지 않았지만 같은 세계관에서 출력한 이미지들</p>
+              <p className="font-mono text-xs tracking-[0.3em] text-dim uppercase mb-2">세계관 갤러리</p>
+              <p className="text-sub text-sm mb-6">캐릭터로 만들지 않았지만 같은 세계관에서 출력한 이미지들</p>
               <div className="flex gap-3 overflow-x-auto pb-4">
                 {currentWData.extraImages.map((src, i) => (
                   <button
@@ -164,15 +164,15 @@ export default function CharactersPage() {
           {/* 세계관 갤러리 플레이스홀더 (이미지 아직 없을 때) */}
           {(!currentWData?.extraImages || currentWData.extraImages.length === 0) && (
             <div className="border-t border-[var(--color-border)] pt-10">
-              <p className="font-mono text-[9px] tracking-[0.3em] text-dim uppercase mb-2">세계관 갤러리</p>
-              <p className="text-sub text-xs mb-5">캐릭터로 만들지 않았지만 같은 세계관에서 출력한 이미지들</p>
+              <p className="font-mono text-xs tracking-[0.3em] text-dim uppercase mb-2">세계관 갤러리</p>
+              <p className="text-sub text-sm mb-5">캐릭터로 만들지 않았지만 같은 세계관에서 출력한 이미지들</p>
               <div className="flex gap-3">
                 {[...Array(4)].map((_, i) => (
                   <div
                     key={i}
                     className="flex-shrink-0 w-44 aspect-[3/4] border border-dashed border-[var(--color-border)] flex items-center justify-center"
                   >
-                    <span className="font-mono text-[8px] text-dim/40 tracking-widest">준비 중</span>
+                    <span className="font-mono text-xs text-dim/40 tracking-widest">준비 중</span>
                   </div>
                 ))}
               </div>
@@ -221,7 +221,7 @@ function CharacterCard({
 
         {/* 변천사 있으면 개수 뱃지 */}
         {char.versions && char.versions.length > 0 && (
-          <div className="absolute top-2 right-2 font-mono text-[8px] tracking-wider px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+          <div className="absolute top-2 right-2 font-mono text-xs tracking-wider px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
             style={{ background: 'rgba(13,13,13,0.85)', color: 'var(--accent)', border: '1px solid color-mix(in srgb, var(--accent) 40%, transparent)' }}>
             v{char.versions.length}
           </div>
@@ -230,19 +230,19 @@ function CharacterCard({
         {/* hover 오버레이 + 클릭 힌트 */}
         <div className="absolute inset-0 flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{ background: 'linear-gradient(to top, rgba(13,13,13,0.8) 0%, transparent 60%)' }}>
-          <span className="font-mono text-[8px] tracking-[0.3em] text-accent uppercase">자세히 보기</span>
+          <span className="font-mono text-xs tracking-[0.3em] text-accent uppercase">자세히 보기</span>
         </div>
       </div>
 
       {/* 정보 */}
       <div className="p-3 border-t border-[var(--color-border)]">
-        <p className="font-mono text-[11px] tracking-wider text-[#f0f0f0] group-hover:text-accent transition-colors truncate">
+        <p className="font-mono text-sm tracking-wider text-[#f0f0f0] group-hover:text-accent transition-colors truncate">
           {char.name}
         </p>
         {char.role && (
-          <p className="font-mono text-[8px] tracking-widest text-dim mt-0.5 truncate">{char.role}</p>
+          <p className="font-mono text-xs tracking-widest text-dim mt-0.5 truncate">{char.role}</p>
         )}
-        <p className="font-mono text-[9px] tracking-widest text-dim/60 mt-1 truncate">
+        <p className="font-mono text-xs tracking-widest text-dim/60 mt-1 truncate">
           {char.tools.join(' · ')}
         </p>
       </div>
