@@ -9,5 +9,16 @@
     "githubUrl": "https://github.com/bell7080/portfolio",
     "demoUrl": "",
     "tags": ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"]
+  },
+    {
+    "id": "proj-002",
+    "title": "Bubble Bubble Cauldron",
+    "description": "2025 글로벌 게임잼 참여 작품",
+    "intent": "2박 3일이라는 짧은 시간 안에 작품성을 부여할 아트가 필요했음",
+    "result": "Midjourney를 활용한 Ai 에셋 조달",
+    "imageSrc": "/assets/projects/proj-002.webp",
+    "githubUrl": "https://globalgamejam.org/games/2025/bubble-bubble-cauldron-4",
+    "demoUrl": "",
+    "tags": ["Midjourney"]
   }
 ]
