@@ -10,8 +10,8 @@ export const WORLDS: World[] = [
     accentSub: '#0a9396',
   },
   {
-    id: '마법학원',
-    name: '마법학원',
+    id: 'AsmoTherapy',
+    name: 'AsmoTherapy',
     description: '마법과 음모가 얽힌 학원의 비밀',
     artStyle: '미국 카툰풍',
     accent: '#7b2d8b',
