@@ -11,11 +11,9 @@
     "note": "일본풍 수채화 터치로 신비로운 분위기를 표현. 명도 대비를 극단적으로 높여 어둠 속 발광 효과 강조.",
     "versions": [
       { "label": "웃음", "src": "/assets/characters/char-001/v1.webp" },
-      { "label": "눈감음", "src": "/assets/characters/char-001/v2.webp" }
-    ],
-    "extras": [
-    "/assets/characters/char-001/extra-01.webp",
-    "/assets/characters/char-001/extra-02.webp"
-  ]
-  }
+      { "label": "눈감음", "src": "/assets/characters/char-001/v2.webp" },
+      { "label": "공격", "src": "/assets/characters/char-001/v3.webp" },
+      { "label": "피격", "src": "/assets/characters/char-001/v4.webp" }
+    ]
+    }
 ]
