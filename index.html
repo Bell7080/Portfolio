@@ -14,10 +14,16 @@
             .slice(1)
             .split('&')
             .map(function (s) { return s.replace(/~and~/g, '&'); });
+          var path = decoded.shift();
+          // BrowserRouter basename="/Portfolio" 와 맞추기 위해 /Portfolio 를 앞에 붙임
+          // 404.html 이 strip 한 base path 를 다시 복원
+          if (path && path.indexOf('/Portfolio') !== 0) {
+            path = '/Portfolio' + path;
+          }
           window.history.replaceState(
             null,
             null,
-            decoded.shift() +
+            path +
               (decoded.length ? '?' + decoded.join('&') : '') +
               l.hash
           );
