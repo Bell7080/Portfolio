@@ -1,6 +1,6 @@
 /* ─── World / Character ──────────────────────────────────────── */
 
-export type WorldId = 'Neural-Rust' | '마법학원' | '판타지모험'
+export type WorldId = 'Neural-Rust' | 'AsmoTherapy' | '판타지모험'
 
 export interface World {
   id: WorldId
