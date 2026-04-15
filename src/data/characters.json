@@ -4,7 +4,7 @@
     "worldId": "Neural-Rust",
     "name": "미무",
     "role": "잠수부",
-    "description": "빛이 닿지 않는 심해에서 고장난 잠수정 속 눈을 뜬 탐험가. 언어가 없는 존재와 신뢰를 만들어 나가는 과정을 통해 '소통의 본질'을 되묻는 인물.",
+    "description": "빛이 닿지 않는 깊은 바다에서 고장난 잠수정 속 눈을 뜬 탐험가. 언어가 없는 존재와 신뢰를 만들어 나가는 과정을 통해 '소통의 본질'을 되묻는 인물.",
     "imageSrc": "/assets/characters/char-001/main.webp",
     "videoSrc": "/assets/characters/char-001/main.webm",
     "tools": ["Grok", "CapCut"],

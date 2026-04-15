@@ -87,7 +87,7 @@ TypeScript 타입 정의는 `/src/types/` 에 별도 파일로 분리.
 
 ### 세계관별 포인트 컬러 (CSS Variables로 전환)
 ```
-심해:        --accent: #005f73 / --accent-sub: #0a9396
+Neural-Rust: --accent: #005f73 / --accent-sub: #0a9396
 마법학원:    --accent: #7b2d8b / --accent-sub: #f4c430
 판타지모험:  --accent: #3a7d44 / --accent-sub: #f9c74f
 ```
@@ -96,8 +96,9 @@ TypeScript 타입 정의는 `/src/types/` 에 별도 파일로 분리.
 세력 외 탭(배경·에셋·3D·기타)은 포인트 컬러 전환 없이 기본 흰색 유지.
 
 ### 폰트
-- 영문: Playfair Display (Google Fonts, 무료)
-- 한글: Noto Sans KR (Google Fonts, 무료)
+- 영문 세리프: Playfair Display (Google Fonts, 무료)
+- 모노스페이스: Space Mono (Google Fonts, 무료)
+- 한글·본문: Noto Sans KR (Google Fonts, 무료)
 
 ---
 
@@ -127,6 +128,44 @@ TypeScript 타입 정의는 `/src/types/` 에 별도 파일로 분리.
 - 스타일은 Tailwind 클래스 우선, 복잡한 애니메이션만 Framer Motion
 - 하드코딩 금지 — 텍스트·컬러·데이터는 반드시 JSON 또는 상수 파일에서 참조
 - 컴포넌트 하나당 역할 하나 — 너무 커지면 분리
+
+---
+
+## 반응형 디자인 규칙 (필수)
+
+**모든 UI는 아래 기기에서 정상 작동해야 한다:**
+- 데스크탑 (1440px+)
+- 노트북 (1024px–1440px)
+- 태블릿 / 아이패드 (768px–1024px)
+- 모바일 (375px–767px)
+- 갤럭시 플립 등 소형 세로 기기 (320px–374px)
+
+**규칙:**
+- Tailwind 반응형 접두사(sm/md/lg/xl) 필수 사용
+- 모바일 first 작성 — 작은 화면 기본, 큰 화면에서 override
+- 모달·팝업은 화면 크기에 따라 레이아웃 전환 (flex-col → flex-row)
+- overflow-hidden + scroll 조합으로 작은 화면에서 잘림 방지
+- 새 컴포넌트 작성 시 반드시 모바일 동작 확인
+
+---
+
+## 폰트 규칙 (필수)
+
+**최소 폰트 크기:**
+- 본문·설명·단락 텍스트: **18px 이상** (text-lg 또는 text-base with 18px root)
+- 서브텍스트·캡션: **14px 이상** (text-sm)
+- UI 라벨·태그·모노 장식: **12px 이상** (text-xs)
+- 절대 12px 미만의 font-size 금지
+
+**폰트 스택:**
+- 영문 세리프 (제목·강조): Playfair Display
+- 영문/숫자 모노 (UI 레이블·코드): Space Mono
+- 한글+영문 본문: Noto Sans KR
+- 최소 가시성 보장을 위해 contrast ratio 4.5:1 이상 유지
+
+**작업 시 주의:**
+- text-[8px], text-[9px], text-[10px] 등 극소형 절댓값 사용 금지
+- 가시성이 낮은 text-white/20 이하 opacity 색상 남용 금지
 
 ---
 

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { WORLDS } from '@/constants'
 import { useWorldTheme } from '@/hooks/useWorldTheme'
 import CharacterModal from '@/components/character/CharacterModal'
+import ImageLightbox from '@/components/ui/ImageLightbox'
 import { asset } from '@/utils/asset'
 import type { WorldId, Character } from '@/types'
 import characters from '@/data/characters.json'
@@ -19,6 +20,7 @@ export default function CharactersPage() {
 
   const [selectedChar, setSelectedChar]       = useState<Character | null>(null)
   const [synopsisExpanded, setSynopsisExpanded] = useState(false)
+  const [galleryLightbox, setGalleryLightbox] = useState<string | null>(null)
 
   return (
     <div>
@@ -143,16 +145,17 @@ export default function CharactersPage() {
               <p className="text-sub text-xs mb-6">캐릭터로 만들지 않았지만 같은 세계관에서 출력한 이미지들</p>
               <div className="flex gap-3 overflow-x-auto pb-4">
                 {currentWData.extraImages.map((src, i) => (
-                  <div
+                  <button
                     key={i}
-                    className="flex-shrink-0 w-44 aspect-[3/4] bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden group"
+                    onClick={() => setGalleryLightbox(src)}
+                    className="flex-shrink-0 w-44 aspect-[3/4] bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden group cursor-zoom-in"
                   >
                     <img
                       src={asset(src)}
                       alt={`world-extra-${i}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -180,6 +183,7 @@ export default function CharactersPage() {
 
       {/* ── 캐릭터 상세 모달 ─────────────────────────────── */}
       <CharacterModal char={selectedChar} onClose={() => setSelectedChar(null)} />
+      <ImageLightbox src={galleryLightbox} onClose={() => setGalleryLightbox(null)} />
     </div>
   )
 }
