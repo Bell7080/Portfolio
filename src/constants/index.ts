@@ -18,8 +18,8 @@ export const WORLDS: World[] = [
     accentSub: '#f4c430',
   },
   {
-    id: '판타지모험',
-    name: '판타지 모험',
+    id: 'For-Garden',
+    name: 'For-Garden',
     description: '픽셀로 그린 모험의 서사',
     artStyle: '픽셀풍',
     accent: '#3a7d44',
