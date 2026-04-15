@@ -2,12 +2,12 @@
   {
     "id": "Neural-Rust",
     "name": "Neural-Rust",
-    "description": "녹슨 기계와 생명이 공존하는 세계",
-    "artStyle": "사이버펑크",
+    "description": "녹슨 닻으로 전선을 끊어내라",
+    "artStyle": "일본 잉크 스플레쉬",
     "accent": "#005f73",
     "accentSub": "#0a9396",
-    "tags": [],
-    "synopsis": "",
+    "tags": ["스팀펑크", "심해", "다크판타지", "로그라이크"],
+    "synopsis": "Ai가 문명을 멸망 시킨지 102년 뒤, 우리는 거대한 톱니바퀴 선박에서 삶을 이어나간다.",
     "conceptNote": "",
     "extraImages": [
       "/assets/worlds/Neural-Rust/gallery-01.webp"
