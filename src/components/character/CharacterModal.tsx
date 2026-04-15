@@ -128,21 +128,21 @@ export default function CharacterModal({ char, onClose }: Props) {
                 className="flex-1 min-w-0 min-h-0 overflow-y-auto overflow-x-hidden px-5 py-6 md:px-8 md:py-8 flex flex-col gap-5"
               >
                 {/* 이름 + 설명 */}
-                <div>
+                <div className="min-w-0">
                   <h2 className="font-serif text-2xl md:text-3xl text-white mb-2 break-words leading-snug">
                     {char.name}
                   </h2>
-                  <p className="text-white/60 text-base leading-relaxed">{char.description}</p>
+                  <p className="text-white/60 text-base leading-relaxed break-words">{char.description}</p>
                 </div>
 
                 {/* Creator's Note */}
                 {char.note && (
                   <div
-                    className="border-l-2 pl-4"
+                    className="border-l-2 pl-4 min-w-0"
                     style={{ borderColor: 'color-mix(in srgb, var(--accent) 35%, transparent)' }}
                   >
                     <p className="font-mono text-xs tracking-widest text-white/30 uppercase mb-1">Creator's Note</p>
-                    <p className="text-white/55 text-sm leading-relaxed">{char.note}</p>
+                    <p className="text-white/55 text-sm leading-relaxed break-words">{char.note}</p>
                   </div>
                 )}
 

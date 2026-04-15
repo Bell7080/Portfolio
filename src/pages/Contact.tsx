@@ -1,9 +1,20 @@
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 import SectionLabel from '@/components/ui/SectionLabel'
 
+// ── EmailJS 키 설정 ────────────────────────────────────────────
+// 환경변수 없이도 동작하도록 기본값 '' 처리
+// .env.local 파일에 아래 세 줄 추가하면 바로 작동:
+//   VITE_EMAILJS_SERVICE_ID=service_xxxxxxx
+//   VITE_EMAILJS_TEMPLATE_ID=template_xxxxxxx
+//   VITE_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxxxxxxxxxx
+const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  ?? ''
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID ?? ''
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  ?? ''
+
 export default function Contact() {
-  const [form,   setForm]   = useState({ name: '', email: '', message: '' })
+  const [form,   setForm]   = useState({ from_name: '', from_email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -12,13 +23,22 @@ export default function Contact() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setStatus('error')
+      return
+    }
     setStatus('sending')
-    // TODO: emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
-    setTimeout(() => setStatus('sent'), 1000)
+    try {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
+      setStatus('sent')
+      setForm({ from_name: '', from_email: '', message: '' })
+    } catch {
+      setStatus('error')
+    }
   }
 
   const SOCIALS = [
-    { label: 'GitHub',    href: 'https://github.com/bell7080' },
+    { label: 'GitHub', href: 'https://github.com/bell7080' },
   ]
 
   return (
@@ -51,7 +71,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-between py-3 border-b border-[var(--color-border)] group"
               >
-                <span className="font-mono text-[11px] tracking-widest text-sub group-hover:text-accent transition-colors">
+                <span className="font-mono text-xs tracking-widest text-sub group-hover:text-accent transition-colors">
                   {label}
                 </span>
                 <span className="font-mono text-xs text-dim group-hover:text-accent transition-colors">→</span>
@@ -68,24 +88,28 @@ export default function Contact() {
           onSubmit={handleSubmit}
           className="space-y-5"
         >
-          {(['name', 'email'] as const).map(field => (
+          {([
+            { field: 'from_name',  label: 'NAME',    type: 'text',  placeholder: '이름' },
+            { field: 'from_email', label: 'EMAIL',   type: 'email', placeholder: 'email@example.com' },
+          ] as const).map(({ field, label, type, placeholder }) => (
             <div key={field}>
-              <label className="font-mono text-[10px] tracking-[0.3em] text-dim uppercase block mb-2">
-                {field === 'name' ? 'NAME' : 'EMAIL'}
+              <label className="font-mono text-xs tracking-[0.3em] text-dim uppercase block mb-2">
+                {label}
               </label>
               <input
                 name={field}
-                type={field === 'email' ? 'email' : 'text'}
+                type={type}
                 value={form[field]}
                 onChange={handleChange}
                 required
                 className="w-full bg-transparent border border-[var(--color-border)] px-4 py-3 font-mono text-sm text-[#f0f0f0] focus:border-accent focus:outline-none focus:ring-0 transition-colors placeholder:text-dim"
-                placeholder={field === 'name' ? '이름' : 'email@example.com'}
+                placeholder={placeholder}
               />
             </div>
           ))}
+
           <div>
-            <label className="font-mono text-[10px] tracking-[0.3em] text-dim uppercase block mb-2">
+            <label className="font-mono text-xs tracking-[0.3em] text-dim uppercase block mb-2">
               MESSAGE
             </label>
             <textarea
@@ -102,17 +126,26 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === 'sending' || status === 'sent'}
-            className="w-full py-3.5 border border-accent font-mono text-xs tracking-[0.3em] text-accent hover:bg-accent hover:text-[#0d0d0d] transition-colors disabled:opacity-40 group relative overflow-hidden"
+            className="w-full py-3.5 border border-accent font-mono text-xs tracking-[0.3em] text-accent hover:bg-accent hover:text-[#0d0d0d] transition-colors disabled:opacity-40"
           >
-            <span className="relative z-10">
-              {status === 'sending' ? 'SENDING...' : status === 'sent' ? 'SENT ✓' : 'SEND MESSAGE →'}
-            </span>
+            {status === 'sending' ? 'SENDING...' : status === 'sent' ? 'SENT ✓' : 'SEND MESSAGE →'}
           </button>
 
           {status === 'error' && (
-            <p className="font-mono text-[10px] text-red-400 text-center tracking-widest">
-              전송 실패. 직접 이메일을 보내주세요.
+            <p className="font-mono text-xs text-red-400 text-center tracking-widest">
+              {!SERVICE_ID ? 'EmailJS 키 미설정 — 아래 안내 참고' : '전송 실패. 잠시 후 다시 시도해주세요.'}
             </p>
+          )}
+
+          {/* 키 미설정 시 안내 */}
+          {!SERVICE_ID && (
+            <div className="border border-dashed border-[var(--color-border)] p-4 text-xs font-mono text-dim space-y-1">
+              <p className="text-accent/80 mb-2 tracking-widest uppercase text-xs">EmailJS 미연동 상태</p>
+              <p>1. emailjs.com 가입 → Gmail 연결 → Service ID 확인</p>
+              <p>2. Email Templates 생성 → Template ID 확인</p>
+              <p>3. Account → API Keys → Public Key 복사</p>
+              <p className="mt-2 text-dim/60">.env.local 파일에 세 가지 키 입력 후 재시작</p>
+            </div>
           )}
         </motion.form>
 
