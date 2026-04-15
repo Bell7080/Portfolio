@@ -12,7 +12,7 @@ const MARQUEE_ITEMS = [
 
 const STATS = [
   { value: '03', label: 'Worlds' },
-  { value: '5+', label: 'AI Tools' },
+  { value: '10+', label: 'AI Tools' },
   { value: '∞', label: 'Ideas' },
 ]
 
@@ -150,7 +150,7 @@ export default function Landing() {
 
           {/* 메인 타이틀 */}
           <div className="py-8 lg:py-0">
-            {['기획하고,', '그리고,', '만든다.'].map((line, i) => (
+            {['상상을', '기획하고', '실현시킨다.'].map((line, i) => (
               <div key={line} className="overflow-hidden">
                 <motion.h1
                   className={`font-serif leading-[1.0] tracking-tight ${

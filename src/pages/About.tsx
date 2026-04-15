@@ -78,8 +78,8 @@ export default function About() {
           <div className="pt-8 grid grid-cols-3 gap-4 text-center">
             {[
               { n: 3, suffix: '', label: '세계관' },
-              { n: 5, suffix: '+', label: 'AI 툴' },
-              { n: 2, suffix: '년+', label: '경력' },
+              { n: 10, suffix: '+', label: 'AI 툴' },
+              { n: 3, suffix: '년+', label: '경력' },
             ].map(({ n, suffix, label }) => (
               <div key={label} className="p-4 border border-[var(--color-border)]">
                 <div className="font-mono text-2xl text-accent font-bold">
