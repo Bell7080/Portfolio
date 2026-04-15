@@ -1,4 +1,13 @@
 [
+    {
+    "id": "ach-002",
+    "category": "serial",
+    "title": "아포칼립스 속 만렙 힐러 정식 연재",
+    "description": "네이버 시리즈, 카카오페이지, 리디북스 등 다수 플랫폼 사이트 정식 연재",
+    "date": "현재",
+    "link": "https://series.naver.com/novel/detail.series?productNo=10711369",
+    "icon": "🎓"
+  },
   {
     "id": "ach-001",
     "category": "education",
@@ -9,7 +18,7 @@
     "icon": "🏆"
   },
   {
-    "id": "ach-002",
+    "id": "ach-003",
     "category": "academic",
     "title": "게임콘텐츠과 재학",
     "description": "게임 기획 및 콘텐츠 제작 전공",
