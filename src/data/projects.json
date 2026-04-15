@@ -12,11 +12,21 @@
     {
     "id": "proj-002",
     "title": "Bubble Bubble Cauldron",
-    "description": "2025 글로벌 게임잼 참여 작품",
-    "intent": "2박 3일이라는 짧은 시간 안에 작품성을 부여할 아트가 필요했음",
+    "description": "You Bad Cat!",
+    "intent": "2025 글로벌 게임잼 참여 작품",
     "result": "Midjourney를 활용한 Ai 에셋 조달",
     "imageSrc": "/assets/projects/proj-002.webp",
     "Url": "https://globalgamejam.org/games/2025/bubble-bubble-cauldron-4",
+    "tags": ["Midjourney"]
+  },
+      {
+    "id": "proj-003",
+    "title": "Sweet Abyss",
+    "description": "마녀도 마법에 걸릴 수가 있는 걸을 보았지, 마녀가 생각과자가 되었으니.",
+    "intent": "61315 게임랩 1등 선발 참여 작품",
+    "result": "Midjourney를 활용한 Ai 에셋 조달",
+    "imageSrc": "/assets/projects/proj-003.webp",
+    "Url": "https://j0choi.itch.io/sweet-abyss",
     "tags": ["Midjourney"]
   }
 ]
