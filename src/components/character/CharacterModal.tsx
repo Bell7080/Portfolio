@@ -139,20 +139,6 @@ export default function CharacterModal({ char, onClose }: Props) {
                 </div>
               )}
 
-              {/* 캐릭터 추가 이미지 갤러리 */}
-              {char.extras && char.extras.length > 0 && (
-                <div>
-                  <p className="font-mono text-[9px] tracking-[0.3em] text-dim uppercase mb-3">갤러리</p>
-                  <div className="grid grid-cols-3 gap-2">
-                    {char.extras.map((src, i) => (
-                      <div key={i} className="aspect-square bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden">
-                        <img src={src} alt={`extra-${i}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* 플레이스홀더: 이미지 없을 때 안내 */}
               {!char.imageSrc && !char.videoSrc && (
                 <div className="border border-dashed border-[var(--color-border)] p-5 text-center">

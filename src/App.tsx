@@ -48,8 +48,8 @@ export default function App() {
         <Route path="/works" element={
           <Suspense fallback={<PageFallback />}><Works /></Suspense>
         }>
-          <Route index element={<Navigate to="characters/심해" replace />} />
-          <Route path="characters" element={<Navigate to="심해" replace />} />
+          <Route index element={<Navigate to="characters/Neural-Rust" replace />} />
+          <Route path="characters" element={<Navigate to="Neural-Rust" replace />} />
           <Route path="characters/:worldId" element={<CharactersPage />} />
           <Route path="backgrounds" element={<PlaceholderTab title="배경·환경" />} />
           <Route path="assets"      element={<PlaceholderTab title="에셋" />} />

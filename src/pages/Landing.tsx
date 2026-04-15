@@ -188,7 +188,7 @@ export default function Landing() {
             </div>
             <div className="flex gap-3 flex-wrap">
               <Link
-                to="/works/characters/심해"
+                to="/works/characters/Neural-Rust"
                 className="group relative inline-flex items-center gap-2 px-6 py-3 border border-[var(--accent)] font-mono text-xs tracking-widest text-accent overflow-hidden hover:text-[#0d0d0d] transition-colors"
               >
                 <span className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />

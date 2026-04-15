@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import SectionLabel from '@/components/ui/SectionLabel'
 
 const WORK_TABS = [
-  { label: '캐릭터',    basePath: '/works/characters', href: '/works/characters/심해' },
+  { label: '캐릭터',    basePath: '/works/characters', href: '/works/characters/Neural-Rust' },
   { label: '배경·환경', basePath: '/works/backgrounds', href: '/works/backgrounds' },
   { label: '에셋',      basePath: '/works/assets',      href: '/works/assets' },
   { label: '3D',        basePath: '/works/3d',           href: '/works/3d' },

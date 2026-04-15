@@ -1,6 +1,6 @@
 /* ─── World / Character ──────────────────────────────────────── */
 
-export type WorldId = '심해' | '마법학원' | '판타지모험'
+export type WorldId = 'Neural-Rust' | '마법학원' | '판타지모험'
 
 export interface World {
   id: WorldId
@@ -41,8 +41,6 @@ export interface Character {
   note: string
   /** 변천사 — 초기 스케치부터 파이널까지 */
   versions?: CharacterVersion[]
-  /** 캐릭터 관련 추가 이미지 (의상·표정·포즈 등) */
-  extras?: string[]
 }
 
 /* ─── Works ──────────────────────────────────────────────────── */

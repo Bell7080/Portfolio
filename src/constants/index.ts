@@ -2,10 +2,10 @@ import type { World } from '@/types'
 
 export const WORLDS: World[] = [
   {
-    id: '심해',
-    name: '심해',
-    description: '깊은 바다 아래, 알려지지 않은 세계의 이야기',
-    artStyle: '일본풍',
+    id: 'Neural-Rust',
+    name: 'Neural-Rust',
+    description: '녹슨 기계와 생명이 공존하는 세계',
+    artStyle: '사이버펑크',
     accent: '#005f73',
     accentSub: '#0a9396',
   },
@@ -30,7 +30,7 @@ export const WORLDS: World[] = [
 export const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Skills', href: '/skills' },
-  { label: 'Works', href: '/works/characters/심해' },
+  { label: 'Works', href: '/works/characters/Neural-Rust' },
   { label: 'Projects', href: '/projects' },
   { label: 'Achievements', href: '/achievements' },
   { label: 'Contact', href: '/contact' },

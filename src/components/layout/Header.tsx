@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const NAV = [
   { num: '01', label: 'About',        href: '/about',        section: 'about' },
   { num: '02', label: 'Skills',       href: '/skills',       section: 'skills' },
-  { num: '03', label: 'Works',        href: '/works/characters/심해', section: 'works' },
+  { num: '03', label: 'Works',        href: '/works/characters/Neural-Rust', section: 'works' },
   { num: '04', label: 'Projects',     href: '/projects',     section: 'projects' },
   { num: '05', label: 'Achievements', href: '/achievements', section: 'achievements' },
   { num: '06', label: 'Contact',      href: '/contact',      section: 'contact' },
