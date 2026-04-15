@@ -6,8 +6,7 @@
     "intent": "채용·협업·의뢰 유입을 위한 개인 브랜딩 사이트가 필요했음",
     "result": "Vite + React + TypeScript 기반 포트폴리오 구축",
     "imageSrc": "",
-    "githubUrl": "https://github.com/bell7080/portfolio",
-    "demoUrl": "",
+    "Url": "https://github.com/bell7080/portfolio",
     "tags": ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"]
   },
     {
@@ -17,8 +16,7 @@
     "intent": "2박 3일이라는 짧은 시간 안에 작품성을 부여할 아트가 필요했음",
     "result": "Midjourney를 활용한 Ai 에셋 조달",
     "imageSrc": "/assets/projects/proj-002.webp",
-    "githubUrl": "https://globalgamejam.org/games/2025/bubble-bubble-cauldron-4",
-    "demoUrl": "",
+    "Url": "https://globalgamejam.org/games/2025/bubble-bubble-cauldron-4",
     "tags": ["Midjourney"]
   }
 ]

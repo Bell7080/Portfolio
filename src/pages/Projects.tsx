@@ -75,24 +75,14 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
       {/* 링크 */}
       <div className="flex gap-4 pt-4 border-t border-[var(--color-border)]">
-        {project.githubUrl && (
+        {project.Url && (
           <a
-            href={project.githubUrl}
+            href={project.Url}
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[11px] tracking-widest text-sub hover:text-accent transition-colors"
           >
-            GitHub →
-          </a>
-        )}
-        {project.demoUrl && (
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-[11px] tracking-widest text-accent hover:text-[#f0f0f0] transition-colors"
-          >
-            Demo →
+            URL →
           </a>
         )}
       </div>
