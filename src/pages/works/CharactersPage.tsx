@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { WORLDS } from '@/constants'
 import { useWorldTheme } from '@/hooks/useWorldTheme'
 import CharacterModal from '@/components/character/CharacterModal'
+import { asset } from '@/utils/asset'
 import type { WorldId, Character } from '@/types'
 import characters from '@/data/characters.json'
 import worldsData from '@/data/worlds.json'
@@ -147,7 +148,7 @@ export default function CharactersPage() {
                     className="flex-shrink-0 w-44 aspect-[3/4] bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden group"
                   >
                     <img
-                      src={src}
+                      src={asset(src)}
                       alt={`world-extra-${i}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -200,13 +201,13 @@ function CharacterCard({
       <div className="aspect-[3/4] bg-[var(--color-surface)] relative overflow-hidden">
         {char.videoSrc ? (
           <video
-            src={char.videoSrc}
+            src={asset(char.videoSrc)}
             autoPlay loop muted playsInline
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : char.imageSrc ? (
           <img
-            src={char.imageSrc}
+            src={asset(char.imageSrc)}
             alt={char.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
