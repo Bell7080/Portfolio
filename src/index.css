@@ -19,7 +19,7 @@
 }
 
 /* ─── 세계관 테마 ────────────────────────────────────────────── */
-[data-world="심해"] {
+[data-world="Neural-Rust"] {
   --accent: #0a9396;
   --accent-sub: #005f73;
   --accent-glow: rgba(10, 147, 150, 0.15);
