@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import MarqueeText from '@/components/ui/MarqueeText'
 import worlds from '@/data/worlds.json'
 import characters from '@/data/characters.json'
+import { asset } from '@/utils/asset'
 
 const MARQUEE_ITEMS = [
   'AI Art Director', 'Character Design', 'Worldbuilding',
@@ -26,8 +27,10 @@ function WorldCard({
   layoutClass: string
   delay: number
 }) {
-  const chars = characters.filter(c => c.worldId === world.id && c.imageSrc)
-  const heroImage = chars[0]?.imageSrc ?? null
+  const chars = characters.filter(c => c.worldId === world.id)
+  const heroChar = chars[0] ?? null
+  const heroVideo = heroChar?.videoSrc ?? null
+  const heroImage = heroChar?.imageSrc ?? null
 
   return (
     <motion.div
@@ -37,10 +40,16 @@ function WorldCard({
       className={`relative overflow-hidden border border-[rgba(255,255,255,0.07)] group ${layoutClass}`}
       style={{ '--card-accent': world.accent, '--card-glow': `${world.accent}22` } as React.CSSProperties}
     >
-      {/* 이미지 or 플레이스홀더 */}
-      {heroImage ? (
+      {/* 동영상 or 이미지 or 플레이스홀더 */}
+      {heroVideo ? (
+        <video
+          src={asset(heroVideo)}
+          autoPlay loop muted playsInline
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      ) : heroImage ? (
         <img
-          src={heroImage}
+          src={asset(heroImage)}
           alt={world.name}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />

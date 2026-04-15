@@ -72,22 +72,25 @@ export default function CharacterModal({ char, onClose }: Props) {
               </button>
 
               {/* ── 왼쪽/상단: 메인 미디어 ───────────────────────── */}
-              {/* 모바일: 고정 높이 / 데스크탑: 42% 너비 전체 높이 */}
+              {/* 모바일: flex-col 내 고정 높이 / 데스크탑: flex-row 내 42% 너비 stretch */}
               <div
-                className="relative bg-[var(--color-surface)] overflow-hidden flex-shrink-0"
-                style={{
-                  height: 'min(55vw, 300px)',  /* 모바일 높이 */
-                  flexBasis: undefined,
-                } as React.CSSProperties}
+                className="modal-media relative bg-[var(--color-surface)] overflow-hidden flex-shrink-0"
+                style={{ height: 'min(60vw, 320px)' } as React.CSSProperties}
               >
-                {/* md 이상에서는 height auto, width 42% */}
                 <style>{`
                   @media (min-width: 768px) {
-                    .modal-media { height: auto !important; width: 42%; align-self: stretch; }
+                    .modal-media {
+                      height: auto !important;
+                      width: 42% !important;
+                      flex-shrink: 0;
+                      align-self: stretch;
+                    }
                   }
                 `}</style>
-                <div className="modal-media absolute inset-0 w-full h-full">
-                  <MediaPanel char={char} onImageClick={(src) => setLightboxSrc(src)} />
+
+                {/* 미디어 (video / image) */}
+                <div className="absolute inset-0 w-full h-full">
+                  <MediaPanel char={char} />
                 </div>
 
                 {/* 세계관·역할 뱃지 */}
@@ -229,7 +232,7 @@ export default function CharacterModal({ char, onClose }: Props) {
 
 /* ── MediaPanel ──────────────────────────────────────────────── */
 
-function MediaPanel({ char, onImageClick }: { char: Character; onImageClick: (src: string) => void }) {
+function MediaPanel({ char }: { char: Character }) {
   if (char.videoSrc) {
     return (
       <video
@@ -241,17 +244,11 @@ function MediaPanel({ char, onImageClick }: { char: Character; onImageClick: (sr
   }
   if (char.imageSrc) {
     return (
-      <button
-        className="w-full h-full cursor-zoom-in"
-        onClick={() => onImageClick(char.imageSrc)}
-        aria-label="크게 보기"
-      >
-        <img
-          src={asset(char.imageSrc)}
-          alt={char.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-        />
-      </button>
+      <img
+        src={asset(char.imageSrc)}
+        alt={char.name}
+        className="w-full h-full object-cover"
+      />
     )
   }
   return (
