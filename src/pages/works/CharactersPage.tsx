@@ -19,7 +19,7 @@ export default function CharactersPage() {
   const worldChars = characters.filter(c => c.worldId === currentWorld.id) as Character[]
 
   const [selectedChar, setSelectedChar]       = useState<Character | null>(null)
-  const [synopsisExpanded, setSynopsisExpanded] = useState(false)
+  const [storyOpen, setStoryOpen]             = useState(false)
   const [galleryLightbox, setGalleryLightbox] = useState<string | null>(null)
 
   return (
@@ -52,26 +52,23 @@ export default function CharactersPage() {
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.18, ease: 'easeOut' }}
         >
-          {/* ── 세계관 헤더 ──────────────────────────────── */}
-          <div className="mb-10 pb-8 border-b border-[var(--color-border)]">
-            {/* 이름 + 아트스타일 뱃지 */}
-            <div className="flex items-baseline gap-4 mb-4">
-              <h3 className="font-serif text-2xl text-accent">{currentWorld.name}</h3>
-              <span className="font-mono text-xs tracking-widest text-dim border border-[var(--color-border)] px-2 py-0.5">
-                {currentWData?.artStyle ?? currentWorld.artStyle}
-              </span>
-            </div>
+          {/* ── 세계관 헤더 (컴팩트) ─────────────────────── */}
+          <div className="mb-8 pb-5 border-b border-[var(--color-border)]">
 
-            {/* 장르·무드 태그 */}
+            {/* 1. 세계관 이름 */}
+            <h3 className="font-serif text-3xl text-accent mb-3">{currentWorld.name}</h3>
+
+            {/* 2. 태그 */}
             {currentWData?.tags && currentWData.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-5">
+              <div className="flex flex-wrap gap-2 mb-3">
                 {currentWData.tags.map(tag => (
                   <span
                     key={tag}
-                    className="font-mono text-xs tracking-widest px-2 py-0.5"
+                    className="font-mono text-xs tracking-widest px-2.5 py-0.5"
                     style={{
-                      color: 'color-mix(in srgb, var(--accent) 80%, white)',
-                      border: '1px solid color-mix(in srgb, var(--accent) 25%, transparent)',
+                      color: 'color-mix(in srgb, var(--accent) 90%, white)',
+                      border: '1px solid color-mix(in srgb, var(--accent) 35%, transparent)',
+                      background: 'color-mix(in srgb, var(--accent) 8%, transparent)',
                     }}
                   >
                     #{tag}
@@ -80,39 +77,74 @@ export default function CharactersPage() {
               </div>
             )}
 
-            {/* 시놉시스 (펼쳐보기) */}
-            {currentWData?.synopsis && (
-              <div className="mb-4">
-                <p className="font-mono text-xs tracking-[0.3em] text-dim uppercase mb-2">Synopsis</p>
-                <div className="relative overflow-hidden" style={{ maxHeight: synopsisExpanded ? 'none' : '4.5rem' }}>
-                  <p className="text-sub text-base leading-relaxed whitespace-pre-line">{currentWData.synopsis}</p>
-                  {!synopsisExpanded && (
-                    <div
-                      className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
-                      style={{ background: 'linear-gradient(to top, #0d0d0d 0%, transparent 100%)' }}
-                    />
-                  )}
-                </div>
-                <button
-                  onClick={() => setSynopsisExpanded(v => !v)}
-                  className="font-mono text-xs tracking-[0.25em] mt-2 transition-colors"
-                  style={{ color: 'color-mix(in srgb, var(--accent) 60%, white)' }}
+            {/* 3. 아트스타일 */}
+            <p className="font-mono text-xs tracking-widest text-sub mb-4">
+              {currentWData?.artStyle ?? currentWorld.artStyle}
+            </p>
+
+            {/* 4. 세계관 스토리 토글 버튼 */}
+            {(currentWData?.synopsis || currentWData?.conceptNote) && (
+              <button
+                onClick={() => setStoryOpen(v => !v)}
+                className="group flex items-center gap-2.5 px-4 py-2 border transition-all duration-200"
+                style={{
+                  borderColor: storyOpen
+                    ? 'color-mix(in srgb, var(--accent) 60%, transparent)'
+                    : 'color-mix(in srgb, var(--accent) 30%, transparent)',
+                  background: storyOpen
+                    ? 'color-mix(in srgb, var(--accent) 10%, transparent)'
+                    : 'transparent',
+                }}
+              >
+                <span
+                  className="font-mono text-xs tracking-widest transition-colors"
+                  style={{ color: 'color-mix(in srgb, var(--accent) 80%, white)' }}
                 >
-                  {synopsisExpanded ? '▲ 접기' : '▼ 더보기'}
-                </button>
-              </div>
+                  ✦ 세계관 스토리 · 기획노트
+                </span>
+                <span
+                  className="font-mono text-xs transition-transform duration-200"
+                  style={{
+                    color: 'color-mix(in srgb, var(--accent) 60%, white)',
+                    display: 'inline-block',
+                    transform: storyOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                  }}
+                >
+                  →
+                </span>
+              </button>
             )}
 
-            {/* 기획·컨셉 노트 */}
-            {currentWData?.conceptNote && (
-              <div
-                className="mt-3 pl-4 border-l-2"
-                style={{ borderColor: 'color-mix(in srgb, var(--accent) 25%, transparent)' }}
-              >
-                <p className="font-mono text-xs tracking-widest text-dim uppercase mb-1">Concept Note</p>
-                <p className="text-sub text-sm leading-relaxed">{currentWData.conceptNote}</p>
-              </div>
-            )}
+            {/* 5. 스토리 패널 (접힘/펼침) */}
+            <AnimatePresence>
+              {storyOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="pt-4 flex flex-col gap-4">
+                    {currentWData?.synopsis && (
+                      <div>
+                        <p className="font-mono text-xs tracking-[0.3em] text-dim uppercase mb-2">Synopsis</p>
+                        <p className="text-sub text-base leading-relaxed whitespace-pre-line">{currentWData.synopsis}</p>
+                      </div>
+                    )}
+                    {currentWData?.conceptNote && (
+                      <div
+                        className="pl-4 border-l-2"
+                        style={{ borderColor: 'color-mix(in srgb, var(--accent) 25%, transparent)' }}
+                      >
+                        <p className="font-mono text-xs tracking-widest text-dim uppercase mb-1">Concept Note</p>
+                        <p className="text-sub text-sm leading-relaxed">{currentWData.conceptNote}</p>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* ── 캐릭터 그리드 ──────────────────────────── */}
