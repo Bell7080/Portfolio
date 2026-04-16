@@ -48,6 +48,21 @@
       { "label": "(구)완성v", "src": "/assets/characters/char-007/v3.webp" }
     ]
     },
+          {
+    "id": "char-008",
+    "worldId": "AsmoTherapy",
+    "name": "테르",
+    "role": "안심위로 전문가",
+    "description": "빛이 닿지 않는 깊은 바다에서 고장난 잠수정 속 눈을 뜬 탐험가. 언어가 없는 존재와 신뢰를 만들어 나가는 과정을 통해 '소통의 본질'을 되묻는 인물.",
+    "imageSrc": "/assets/characters/char-008/main.webp",
+    "videoSrc": "/assets/characters/char-008/main.webm",
+    "tools": ["Grok", "CapCut"],
+    "note": "일본풍 수채화 터치로 신비로운 분위기를 표현. 명도 대비를 극단적으로 높여 어둠 속 발광 효과 강조.",
+    "versions": [
+      { "label": "장갑없음", "src": "/assets/characters/char-008/v1.webp" },
+      { "label": "v2", "src": "/assets/characters/char-008/v2.webp" },
+    ]
+    },
       {
     "id": "char-011",
     "worldId": "For-Garden",
