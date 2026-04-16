@@ -33,6 +33,22 @@
     ]
     },
       {
+    "id": "char-007",
+    "worldId": "AsmoTherapy",
+    "name": "페라비",
+    "role": "욕망증폭 전문가",
+    "description": "빛이 닿지 않는 깊은 바다에서 고장난 잠수정 속 눈을 뜬 탐험가. 언어가 없는 존재와 신뢰를 만들어 나가는 과정을 통해 '소통의 본질'을 되묻는 인물.",
+    "imageSrc": "/assets/characters/char-007/main.webp",
+    "videoSrc": "/assets/characters/char-007/main.webm",
+    "tools": ["Grok", "CapCut"],
+    "note": "일본풍 수채화 터치로 신비로운 분위기를 표현. 명도 대비를 극단적으로 높여 어둠 속 발광 효과 강조.",
+    "versions": [
+      { "label": "(구)초기v", "src": "/assets/characters/char-007/v1.webp" },
+      { "label": "(구)수정v", "src": "/assets/characters/char-007/v2.webp" },
+      { "label": "(구)완성v", "src": "/assets/characters/char-007/v3.webp" }
+    ]
+    },
+      {
     "id": "char-011",
     "worldId": "For-Garden",
     "name": "빨간망토",
