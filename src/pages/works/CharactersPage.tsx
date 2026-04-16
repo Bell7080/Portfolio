@@ -5,7 +5,6 @@ import { WORLDS } from '@/constants'
 import { useWorldTheme } from '@/hooks/useWorldTheme'
 import CharacterModal from '@/components/character/CharacterModal'
 import ImageLightbox from '@/components/ui/ImageLightbox'
-import PingPongVideo from '@/components/ui/PingPongVideo'
 import { asset } from '@/utils/asset'
 import type { WorldId, Character } from '@/types'
 import characters from '@/data/characters.json'
@@ -237,8 +236,9 @@ function CharacterCard({
       {/* 이미지/영상 영역 */}
       <div className="aspect-[3/4] bg-[var(--color-surface)] relative overflow-hidden">
         {char.videoSrc ? (
-          <PingPongVideo
+          <video
             src={asset(char.videoSrc)}
+            autoPlay loop muted playsInline
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : char.imageSrc ? (

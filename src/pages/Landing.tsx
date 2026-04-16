@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import MarqueeText from '@/components/ui/MarqueeText'
-import PingPongVideo from '@/components/ui/PingPongVideo'
 import worlds from '@/data/worlds.json'
 import characters from '@/data/characters.json'
 import { asset } from '@/utils/asset'
@@ -62,8 +61,9 @@ function WorldCard({
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         >
           {char?.videoSrc ? (
-            <PingPongVideo
+            <video
               src={asset(char.videoSrc)}
+              autoPlay loop muted playsInline
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               style={{ objectPosition: 'center 20%' }}
             />
@@ -194,8 +194,9 @@ function HeroBg() {
         transition={{ duration: 1.4, ease: 'easeInOut' }}
       >
         {char.videoSrc ? (
-          <PingPongVideo
+          <video
             src={asset(char.videoSrc)}
+            autoPlay loop muted playsInline
             className="w-full h-full object-cover"
             style={{ objectPosition: 'center 15%', opacity: 0.18 }}
           />

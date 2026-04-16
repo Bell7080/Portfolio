@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import type { Character } from '@/types'
 import { asset } from '@/utils/asset'
 import ImageLightbox from '@/components/ui/ImageLightbox'
-import PingPongVideo from '@/components/ui/PingPongVideo'
 
 interface Props {
   char: Character | null
@@ -254,8 +253,9 @@ export default function CharacterModal({ char, onClose }: Props) {
 function MediaPanel({ char }: { char: Character }) {
   if (char.videoSrc) {
     return (
-      <PingPongVideo
+      <video
         src={asset(char.videoSrc)}
+        autoPlay loop muted playsInline
         className="w-full h-full object-cover"
       />
     )
