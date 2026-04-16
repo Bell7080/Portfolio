@@ -197,20 +197,20 @@ function HeroBg() {
           <PingPongVideo
             src={asset(char.videoSrc)}
             className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 15%', opacity: 0.07 }}
+            style={{ objectPosition: 'center 15%', opacity: 0.18 }}
           />
         ) : (
           <img
             src={asset(char.imageSrc!)}
             alt=""
             className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 15%', opacity: 0.07 }}
+            style={{ objectPosition: 'center 15%', opacity: 0.18 }}
           />
         )}
         {/* 텍스트 가독성 보호 그라디언트 */}
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to right, rgba(13,13,13,0.92) 40%, rgba(13,13,13,0.75) 100%)' }}
+          style={{ background: 'linear-gradient(to right, rgba(13,13,13,0.82) 35%, rgba(13,13,13,0.55) 100%)' }}
         />
       </motion.div>
     </AnimatePresence>
