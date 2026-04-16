@@ -13,7 +13,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 export default function Achievements() {
   return (
     <section className="max-w-4xl mx-auto px-8 md:px-16 py-24">
-      <SectionLabel number="06" label="Achievements" />
+      <SectionLabel number="05" label="Achievements" />
 
       <p className="text-sub text-sm mb-12 font-mono tracking-widest">
         — 외부 검증 · 경력 · 수료

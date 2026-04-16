@@ -25,7 +25,7 @@ export default function CharactersPage() {
   return (
     <div>
       {/* ── 세계관 탭 ─────────────────────────────────────── */}
-      <div className="flex gap-2 mb-8 overflow-x-auto">
+      <div className="flex gap-2 mb-5 overflow-x-auto">
         {WORLDS.map(world => (
           <NavLink
             key={world.id}
@@ -53,7 +53,7 @@ export default function CharactersPage() {
           transition={{ duration: 0.18, ease: 'easeOut' }}
         >
           {/* ── 세계관 헤더 (컴팩트) ─────────────────────── */}
-          <div className="mb-8 pb-5 border-b border-[var(--color-border)]">
+          <div className="mb-5 pb-4 border-b border-[var(--color-border)]">
 
             {/* 1. 세계관 이름 */}
             <h3 className="font-serif text-3xl text-accent mb-3">{currentWorld.name}</h3>

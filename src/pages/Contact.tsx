@@ -4,7 +4,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 export default function Contact() {
   return (
     <section className="max-w-4xl mx-auto px-8 md:px-16 py-24">
-      <SectionLabel number="07" label="Contact" />
+      <SectionLabel number="06" label="Contact" />
 
       <motion.div
         initial={{ opacity: 0, y: 16 }}

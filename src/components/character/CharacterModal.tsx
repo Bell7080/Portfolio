@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Character } from '@/types'
 import { asset } from '@/utils/asset'
@@ -11,7 +11,12 @@ interface Props {
 
 export default function CharacterModal({ char, onClose }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const versionStripRef = useRef<HTMLDivElement>(null)
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+
+  const scrollStrip = useCallback((dir: 1 | -1) => {
+    versionStripRef.current?.scrollBy({ left: dir * 200, behavior: 'smooth' })
+  }, [])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -59,7 +64,7 @@ export default function CharacterModal({ char, onClose }: Props) {
               exit={{ x: '100%' }}
               transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
               className="fixed right-0 top-0 bottom-0 z-50 bg-[#0d0d0d] border-l border-[var(--color-border)] flex flex-col md:flex-row overflow-hidden"
-              style={{ width: 'min(640px, 100vw)' }}
+              style={{ width: 'min(860px, 100vw)' }}
             >
               {/* 닫기 버튼 */}
               <button
@@ -156,7 +161,26 @@ export default function CharacterModal({ char, onClose }: Props) {
                 {(char.imageSrc || (char.versions && char.versions.length > 0)) && (
                   <div className="w-full">
                     <p className="font-mono text-xs tracking-widest text-white/30 uppercase mb-3">다른 버전</p>
-                    <div className="flex gap-3 overflow-x-auto pb-2 pr-4 no-scrollbar">
+                    <div className="relative group/strip">
+                      {/* 왼쪽 화살표 */}
+                      <button
+                        onClick={() => scrollStrip(-1)}
+                        className="absolute left-0 top-0 bottom-8 z-10 w-8 flex items-center justify-center opacity-0 group-hover/strip:opacity-100 transition-opacity duration-200"
+                        style={{ background: 'linear-gradient(to right, rgba(13,13,13,0.85), transparent)' }}
+                        aria-label="이전"
+                      >
+                        <span className="font-mono text-sm text-white/60 hover:text-accent transition-colors">‹</span>
+                      </button>
+                      {/* 오른쪽 화살표 */}
+                      <button
+                        onClick={() => scrollStrip(1)}
+                        className="absolute right-0 top-0 bottom-8 z-10 w-8 flex items-center justify-center opacity-0 group-hover/strip:opacity-100 transition-opacity duration-200"
+                        style={{ background: 'linear-gradient(to left, rgba(13,13,13,0.85), transparent)' }}
+                        aria-label="다음"
+                      >
+                        <span className="font-mono text-sm text-white/60 hover:text-accent transition-colors">›</span>
+                      </button>
+                    <div ref={versionStripRef} className="flex gap-3 overflow-x-auto pb-2 pr-4 no-scrollbar">
 
                       {/* 원본 */}
                       {char.imageSrc && (
@@ -202,6 +226,7 @@ export default function CharacterModal({ char, onClose }: Props) {
                           <p className="font-mono text-xs text-white/40 text-center leading-tight">{v.label}</p>
                         </button>
                       ))}
+                    </div>
                     </div>
                   </div>
                 )}

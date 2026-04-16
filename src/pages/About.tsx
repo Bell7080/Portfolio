@@ -17,7 +17,7 @@ export default function About() {
 
   return (
     <section className="max-w-5xl mx-auto px-8 md:px-16 py-24">
-      <SectionLabel number="02" label="About" />
+      <SectionLabel number="01" label="About" />
 
       <div ref={ref} className="grid md:grid-cols-2 gap-16 items-start">
 

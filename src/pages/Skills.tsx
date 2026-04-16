@@ -79,7 +79,7 @@ export default function Skills() {
 
   return (
     <section className="max-w-4xl mx-auto px-8 md:px-16 py-24">
-      <SectionLabel number="03" label="Skills" />
+      <SectionLabel number="02" label="Skills" />
 
       {/* RPG 스탯 패널 */}
       <div className="mb-16 border border-[var(--color-border)] p-6 md:p-10 relative">

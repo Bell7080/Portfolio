@@ -14,11 +14,11 @@ export default function Works() {
   const { pathname } = useLocation()
 
   return (
-    <section className="min-h-[calc(100vh-3.5rem)] px-8 md:px-16 py-16">
-      <SectionLabel number="04" label="Works" />
+    <section className="min-h-[calc(100vh-3.5rem)] px-8 md:px-16 py-8">
+      <SectionLabel number="03" label="Works" />
 
       {/* 탭 바 */}
-      <div className="flex mb-12 border-b border-[var(--color-border)] overflow-x-auto">
+      <div className="flex mb-6 border-b border-[var(--color-border)] overflow-x-auto">
         {WORK_TABS.map(({ label, basePath, href }) => {
           // basePath로 시작하면 active — 세계관 전환(/works/characters/AsmoTherapy)도 캐릭터 탭 active 유지
           const isActive = pathname.startsWith(basePath)

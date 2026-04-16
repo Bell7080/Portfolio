@@ -7,7 +7,7 @@ import { asset } from '@/utils/asset'
 export default function Projects() {
   return (
     <section className="max-w-5xl mx-auto px-8 md:px-16 py-24">
-      <SectionLabel number="05" label="Projects" />
+      <SectionLabel number="04" label="Projects" />
 
       <div className="grid md:grid-cols-2 gap-5">
         {projects.map((project, i) => (
