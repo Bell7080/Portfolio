@@ -77,7 +77,7 @@ export default function CharacterModal({ char, onClose }: Props) {
                 <style>{`
                   .char-media { width: 100%; height: min(52vw, 280px); }
                   @media (min-width: 768px) {
-                    .char-media { width: 42%; height: auto; align-self: stretch; }
+                    .char-media { width: 50%; height: auto; align-self: stretch; }
                   }
                 `}</style>
 
