@@ -45,13 +45,13 @@ function WorldCard({
         <video
           src={asset(heroVideo)}
           autoPlay loop muted playsInline
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
       ) : heroImage ? (
         <img
           src={asset(heroImage)}
           alt={world.name}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
       ) : (
         <PlaceholderVisual world={world} />
