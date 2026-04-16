@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import SectionLabel from '@/components/ui/SectionLabel'
 import projects from '@/data/projects.json'
+import { asset } from '@/utils/asset'
 
 export default function Projects() {
   return (
@@ -42,7 +43,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       {project.imageSrc && (
         <div className="aspect-video bg-[var(--color-surface)] mb-5 overflow-hidden">
           <img
-            src={project.imageSrc}
+            src={asset(project.imageSrc)}
             alt={project.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
