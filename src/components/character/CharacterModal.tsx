@@ -156,7 +156,7 @@ export default function CharacterModal({ char, onClose }: Props) {
                 {(char.imageSrc || (char.versions && char.versions.length > 0)) && (
                   <div className="w-full">
                     <p className="font-mono text-xs tracking-widest text-white/30 uppercase mb-3">다른 버전</p>
-                    <div className="flex gap-3 overflow-x-auto pb-2">
+                    <div className="flex gap-3 overflow-x-auto pb-2 pr-4 no-scrollbar">
 
                       {/* 원본 */}
                       {char.imageSrc && (

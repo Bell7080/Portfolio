@@ -62,7 +62,8 @@
     color: #0d0d0d;
   }
 
-  ::-webkit-scrollbar { width: 2px; }
+  /* 세로 스크롤바만 스타일 (가로는 숨김) */
+  ::-webkit-scrollbar { width: 2px; height: 0; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
     background: var(--accent);
@@ -121,6 +122,10 @@
     pointer-events: none;
     z-index: 1;
   }
+
+  /* 스크롤바 숨김 */
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
 
   /* 마퀴 */
   .marquee-track {
